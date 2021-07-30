@@ -11,9 +11,11 @@ def index(request):
     return render(request, 'huiyiyuding/index.html', context)
 
 def mains(request):
-    qs = meetings.objects.values()
-    return render(request, 'huiyiyuding/core/admin.html', {'name': qs})
+    return render(request, 'huiyiyuding/core/admin.html')
 
+def get_meetings(request):
+    qs = meetings.objects.values()
+    return render(request, 'huiyiyuding/core/list.html', {'name': qs})
 
 def createmeeting(request):
         qs = meetings.objects.values()
