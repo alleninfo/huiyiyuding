@@ -10,4 +10,12 @@
 
 3、 前端使用layui，后端django，没有用其他模块。
 
+4、修改菜单，使其左边预定会议室、查看会议室工作正常(2021.08.1新增)
 
+
+# 功能展示
+
+![](https://xucg.info/wp-content/uploads/2021/07/1.jpg)
+
+预定界面
+![](https://xucg.info/wp-content/uploads/2021/07/2.jpg)

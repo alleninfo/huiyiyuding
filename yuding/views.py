@@ -1,4 +1,3 @@
-from django.http import request
 from django.shortcuts import render
 from yuding.models import meetings
 
@@ -11,11 +10,8 @@ def index(request):
     return render(request, 'huiyiyuding/index.html', context)
 
 def mains(request):
-    return render(request, 'huiyiyuding/core/admin.html')
-
-def get_meetings(request):
     qs = meetings.objects.values()
-    return render(request, 'huiyiyuding/core/list.html', {'name': qs})
+    return render(request, 'huiyiyuding/core/admin.html', {'name': qs})
 
 def createmeeting(request):
         qs = meetings.objects.values()
@@ -31,3 +27,5 @@ def deletemeeting(request):
         qs = meetings.objects.values()
         delete = qs.filter(createname)
         return render(request, 'huiyiyuding/core/deletemeeting.html', {'name': delete})
+
+
