@@ -18,7 +18,7 @@
     <div class="layui-inline">
       <label class="layui-form-label">预约时间：</label>
       <div class="layui-input-inline">
-        <input type="text" class="layui-input" id="timerange" placeholder=" - ">
+        <input type="text" class="layui-input" id="test5" placeholder=" - ">
       </div>
     </div>
        <div class="layui-form-item">
@@ -53,7 +53,7 @@
     </div>
 </form>
 
-<script src="{% static 'huiyiyuding/layui.js' %}" charset="utf-8"></script>
+{#<script src="{% static 'huiyiyuding/layui.js' %}" charset="utf-8"></script>#}
 
 <script>
     //Demo
@@ -62,23 +62,22 @@ layui.use(['form','laydate'] ,function(){
       ,laydate = layui.laydate;
 
           //日期时间范围
-  laydate.render({
-    elem: '#timerange'
-    ,type: 'datetime'
-    ,range: true
-  });
+      laydate.render({
+        elem: '#test5'
+        ,type: 'datetime'
+        ,range: true
+      });
       //监听提交
       form.on('submit(formDemo)', function(data){
         layer.msg(JSON.stringify(data.field));
         return false;
       });
-});
-//表单取值
-  layui.$('#LAY-component-form-getval').on('click', function(){
-    var data = form.val('example');
-    alert(JSON.stringify(data));
-  });
 
+    //表单取值
+      layui.$('#LAY-component-form-getval').on('click', function(){
+        var data = form.val('example');
+        alert(JSON.stringify(data));
+      });
 });
 </script>
 {% include 'huiyiyuding/core/foot.html' %}
@@ -86,4 +85,3 @@ layui.use(['form','laydate'] ,function(){
 
 
 
-{% include 'huiyiyuding/core/foot.html' %}

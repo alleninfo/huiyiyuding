@@ -80,8 +80,12 @@ def login(request):
 def logout(request):
     return redirect('/index/')
 
+def userinfo(request):
+    qs_user = meetings.objects.values()
+    userqs = qs_user.filter()
+    return render(request, 'huiyiyuding/core/userinfo.html', {'userinfo':userqs})
 
-# 创建会议室相关
+#会议室相关
 
 def newmeeting(request):
     return render(request, 'huiyiyuding/core/newmeeting.html')
