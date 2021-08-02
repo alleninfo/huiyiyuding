@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+{% include 'huiyiyuding/core/base.html' %}
 
-</body>
-</html>
+    <div style="padding: 15px;">
+        <div class="layui-form">
+              <table class="layui-table">
+                <colgroup>
+                  <col width="150">
+                  <col width="150">
+                  <col width="200">
+                  <col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>会议室名称</th>
+                    <th>容纳人数</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>预约人</th>
+                    <th>会议时长</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        {% for meeting in name %}
+                        <tr>
+                            {% for name, value in meeting.items %}
+                              <td>{{ value }}</td>
+
+                            {% endfor %}
+                        <td>
+                            <div class="layui-btn-group">
+                                  <button type="button" class="layui-btn">预定</button>
+                                  <button type="button" class="layui-btn ">编辑</button>
+                                  <button type="button" class="layui-btn">删除</button>
+                                </div></td>
+                        </tr>
+
+                        {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+    </div>
+{% include 'huiyiyuding/core/foot.html' %}

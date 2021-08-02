@@ -1,0 +1,89 @@
+{% load static %}
+{% include 'huiyiyuding/core/base.html' %}
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend>预定会议室</legend>
+</fieldset>
+<form class="layui-form" action="/newmeeting/">
+      <div class="layui-form-item">
+        <label class="layui-form-label">选择会议室：</label>
+        <div class="layui-input-block">
+          <select name="all_meetings" lay-verify="required">
+            <option value="">ddd </option>
+              <option value="">33</option>
+              <option value="">44 </option>
+          </select>
+        </div>
+      </div>
+    <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">预约时间：</label>
+      <div class="layui-input-inline">
+        <input type="text" class="layui-input" id="timerange" placeholder=" - ">
+      </div>
+    </div>
+       <div class="layui-form-item">
+    <label class="layui-form-label">预约人：</label>
+    <div class="layui-input-inline">
+      <select name="quiz1">
+        <option value="">请选择省</option>
+        <option value="浙江" selected="">浙江省</option>
+        <option value="你的工号">江西省</option>
+        <option value="你最喜欢的老师">福建省</option>
+      </select>
+    </div>
+     <label class="layui-form-label">所在部门：</label>
+
+    <div class="layui-input-inline">
+      <select name="quiz2">
+        <option value="">请选择市</option>
+        <option value="杭州">杭州</option>
+        <option value="宁波" disabled="">宁波</option>
+        <option value="温州">温州</option>
+        <option value="温州">台州</option>
+        <option value="温州">绍兴</option>
+      </select>
+    </div>
+   </div>
+    <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+    </div>
+</form>
+
+<script src="{% static 'huiyiyuding/layui.js' %}" charset="utf-8"></script>
+
+<script>
+    //Demo
+layui.use(['form','laydate'] ,function(){
+      var form = layui.form
+      ,laydate = layui.laydate;
+
+          //日期时间范围
+  laydate.render({
+    elem: '#timerange'
+    ,type: 'datetime'
+    ,range: true
+  });
+      //监听提交
+      form.on('submit(formDemo)', function(data){
+        layer.msg(JSON.stringify(data.field));
+        return false;
+      });
+});
+//表单取值
+  layui.$('#LAY-component-form-getval').on('click', function(){
+    var data = form.val('example');
+    alert(JSON.stringify(data));
+  });
+
+});
+</script>
+{% include 'huiyiyuding/core/foot.html' %}
+
+
+
+
+{% include 'huiyiyuding/core/foot.html' %}

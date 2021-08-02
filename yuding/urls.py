@@ -7,4 +7,9 @@ urlpatterns = [
     path('changemeeting/', views.changemeeting),
     path('deletemeeting/', views.deletemeeting),
     path('main/', views.mains),
+    path('mycreate/', views.mycreate),
+    path('list/', views.list_all),
+    path('login/', views.login),
+    path('logout/', views.logout),
+    path('newmeeting/', views.newmeeting),
 ]
