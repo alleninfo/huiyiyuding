@@ -19,9 +19,9 @@ def mains(request):
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
 
-def createmeeting(request, truename):
+def createmeeting(request):
     creates = meetings.objects.filter(pretime__isnull=True)
-    qs_user = Userinfo.objects.filter(truename)
+    qs_user = Userinfo.objects.filter(truename=True)
     return render(request, 'huiyiyuding/core/newmeeting.html', {'name': creates, 'userinfo':qs_user})
 
 

@@ -35,7 +35,7 @@ class Userinfo(models.Model):
         verbose_name = u"员工信息"
         verbose_name_plural = verbose_name
     def __str__(self):
-        return 'username:%s email:%s truename:%s department:%s gender:%s' %(self.username, self.truename, self.email, self.gender, self.department)
+        return self.truename
 
 
 class meetings(models.Model):
@@ -53,4 +53,5 @@ class meetings(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return 'name:%s pretime:%s createname:%s' % (self.name, self.pretime, self.createname)
+      #  return 'name:%s pretime:%s createname:%s' % (self.name, self.pretime, self.createname)
+         return self.name

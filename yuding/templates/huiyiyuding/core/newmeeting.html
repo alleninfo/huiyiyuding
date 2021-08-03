@@ -11,6 +11,7 @@
              <select name="all_meetings" lay-verify="required">
                 {% for meeting in name %}
                      <option value="{{ meeting }}">{{ meeting }} </option>
+                {% empty %}
                {% endfor %}
               </select>
 
@@ -29,6 +30,7 @@
       <select name="quiz1">
           {% for user in userinfo %}
              <option value="{{ user }}">{{ user }}</option>
+              {% empty %}
             {% endfor %}
       </select>
     </div>
@@ -42,6 +44,7 @@
         <option value="温州">温州</option>
         <option value="温州">台州</option>
         <option value="温州">绍兴</option>
+
       </select>
     </div>
    </div>
