@@ -1,15 +1,17 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
-from yuding.models import meetings
+from yuding.models import meetings, Userinfo
 from . import models
 
 
 def index(request):
-    context = {
-        'title': '会议室预定系统',
+    dic = {
+        'title':'会议室预定系统',
         'copyright': '某某有限公司 版权所有©2016-2021',
+
     }
-    return render(request, 'huiyiyuding/login/index.html', context)
+
+    return render(request, 'huiyiyuding/login/index.html', dic)
 
 
 def mains(request):
@@ -17,17 +19,15 @@ def mains(request):
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
 
-def createmeeting(request):
-    qs_create = meetings.objects.values()
-    creates = qs_create.filter(pretime__isnull=True)
-    print(creates)
-    return render(request, 'huiyiyuding/core/createmeeting.html', {'name': creates})
+def createmeeting(request, truename):
+    creates = meetings.objects.filter(pretime__isnull=True)
+    qs_user = Userinfo.objects.filter(truename)
+    return render(request, 'huiyiyuding/core/newmeeting.html', {'name': creates, 'userinfo':qs_user})
 
 
 def changemeeting(request):
-    qs_change = meetings.objects.values()
-    changes = qs_change.filter()
-    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': changes})
+    qs_change = meetings.objects.filter(createname=True)
+    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': qs_change})
 
 
 def deletemeeting(request):
@@ -80,9 +80,9 @@ def login(request):
 def logout(request):
     return redirect('/index/')
 
-def userinfo(request):
+def nuserinfo(request):
     qs_user = meetings.objects.values()
-    userqs = qs_user.filter()
+    userqs = qs_user.filter(uname='oakcdrom')
     return render(request, 'huiyiyuding/core/userinfo.html', {'userinfo':userqs})
 
 #会议室相关
@@ -90,3 +90,5 @@ def userinfo(request):
 def newmeeting(request):
     return render(request, 'huiyiyuding/core/newmeeting.html')
 
+
+#查询相关

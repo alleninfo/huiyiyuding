@@ -7,11 +7,13 @@
       <div class="layui-form-item">
         <label class="layui-form-label">选择会议室：</label>
         <div class="layui-input-block">
-          <select name="all_meetings" lay-verify="required">
-            <option value="">ddd </option>
-              <option value="">33</option>
-              <option value="">44 </option>
-          </select>
+
+             <select name="all_meetings" lay-verify="required">
+                {% for meeting in name %}
+                     <option value="{{ meeting }}">{{ meeting }} </option>
+               {% endfor %}
+              </select>
+
         </div>
       </div>
     <div class="layui-form-item">
@@ -25,10 +27,9 @@
     <label class="layui-form-label">预约人：</label>
     <div class="layui-input-inline">
       <select name="quiz1">
-        <option value="">请选择省</option>
-        <option value="浙江" selected="">浙江省</option>
-        <option value="你的工号">江西省</option>
-        <option value="你最喜欢的老师">福建省</option>
+          {% for user in userinfo %}
+             <option value="{{ user }}">{{ user }}</option>
+            {% endfor %}
       </select>
     </div>
      <label class="layui-form-label">所在部门：</label>
