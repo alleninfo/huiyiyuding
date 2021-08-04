@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from yuding.models import meetings, Userinfo
 from . import models
@@ -21,7 +21,7 @@ def mains(request):
 
 def createmeeting(request):
     creates = meetings.objects.filter(pretime__isnull=True)
-    qs_user = Userinfo.objects.filter(truename=True)
+    qs_user = Userinfo.objects.all()
     return render(request, 'huiyiyuding/core/newmeeting.html', {'name': creates, 'userinfo':qs_user})
 
 
@@ -82,13 +82,29 @@ def logout(request):
 
 def nuserinfo(request):
     qs_user = meetings.objects.values()
-    userqs = qs_user.filter(uname='oakcdrom')
+    userqs = qs_user.filter(uname='name')
     return render(request, 'huiyiyuding/core/userinfo.html', {'userinfo':userqs})
 
 #会议室相关
 
 def newmeeting(request):
-    return render(request, 'huiyiyuding/core/newmeeting.html')
+    if request.method =='GET':
+        return render(request, 'huiyiyuding/core/newmeeting.html')
+    elif request.method =='POST':
+        #预定会议室
+        meetingname = request.POST.get('name')
+        if not meetingname:
+            return HttpResponse('请选择一个会议室')
+        starttimes = request.POST.get('starttime')
+        if not starttimes:
+            return HttpResponse('请选择会议开始或结束时间')
+        try:
+            endtimes = request.POST.get('endtime')
+            if not endtimes:
+                return HttpResponse('请选择会议开始或结束时间')
+        except Exception as e:
+            print(e)
 
 
+    return HttpResponse('请使用正确Http请求方法 !')
 #查询相关

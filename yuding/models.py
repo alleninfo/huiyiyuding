@@ -31,11 +31,11 @@ class Userinfo(models.Model):
     )
     lastlogin = datetime.datetime.now()
     class Meta:
-        ordering = ['truename']
+        ordering = ['username']
         verbose_name = u"员工信息"
         verbose_name_plural = verbose_name
     def __str__(self):
-        return self.truename
+        return self.username
 
 
 class meetings(models.Model):
@@ -53,5 +53,4 @@ class meetings(models.Model):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-      #  return 'name:%s pretime:%s createname:%s' % (self.name, self.pretime, self.createname)
          return self.name

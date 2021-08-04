@@ -29,7 +29,7 @@
     <div class="layui-input-inline">
       <select name="quiz1">
           {% for user in userinfo %}
-             <option value="{{ user }}">{{ user }}</option>
+             <option value="{{ user.truename }}">{{ user.truename }}</option>
               {% empty %}
             {% endfor %}
       </select>
@@ -38,12 +38,11 @@
 
     <div class="layui-input-inline">
       <select name="quiz2">
-        <option value="">请选择市</option>
-        <option value="杭州">杭州</option>
-        <option value="宁波" disabled="">宁波</option>
-        <option value="温州">温州</option>
-        <option value="温州">台州</option>
-        <option value="温州">绍兴</option>
+        {% for user in userinfo %}
+             <option value="{{ user.department }}">{{ user.department }}</option>
+              {% empty %}
+            {% endfor %}
+      </select>
 
       </select>
     </div>
@@ -56,8 +55,6 @@
   </div>
     </div>
 </form>
-
-{#<script src="{% static 'huiyiyuding/layui.js' %}" charset="utf-8"></script>#}
 
 <script>
     //Demo
