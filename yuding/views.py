@@ -1,8 +1,9 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from yuding.models import meetings, Userinfo
 from . import models
-
+from .forms import UserLoginForm
+from django.contrib.auth import authenticate, login
 
 def index(request):
     dic = {
@@ -20,10 +21,9 @@ def mains(request):
 
 
 def createmeeting(request):
-    creates = meetings.objects.filter(pretime__isnull=True)
+    qs_creates = meetings.objects.filter(starttime__isnull=True)
     qs_user = Userinfo.objects.all()
-    return render(request, 'huiyiyuding/core/newmeeting.html', {'name': creates, 'userinfo':qs_user})
-
+    return render(request, 'huiyiyuding/core/newmeeting.html', {'name': qs_creates, 'userinfo':qs_user})
 
 def changemeeting(request):
     qs_change = meetings.objects.filter(createname=True)
@@ -47,7 +47,7 @@ def list_all(request):
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
 
-# 登录相关
+# # 登录相关
 def login(request):
     if request.method == 'GET':
         #1, 首先检查session，判断用户是否第一次登录，如果不是，则直接重定向到首页
@@ -77,34 +77,13 @@ def login(request):
     return render(request, 'huiyiyuding/core/admin.html')
 
 
+
+
+
 def logout(request):
-    return redirect('/index/')
+    return redirect('/')
 
 def nuserinfo(request):
     qs_user = meetings.objects.values()
     userqs = qs_user.filter(uname='name')
     return render(request, 'huiyiyuding/core/userinfo.html', {'userinfo':userqs})
-
-#会议室相关
-
-def newmeeting(request):
-    if request.method =='GET':
-        return render(request, 'huiyiyuding/core/newmeeting.html')
-    elif request.method =='POST':
-        #预定会议室
-        meetingname = request.POST.get('name')
-        if not meetingname:
-            return HttpResponse('请选择一个会议室')
-        starttimes = request.POST.get('starttime')
-        if not starttimes:
-            return HttpResponse('请选择会议开始或结束时间')
-        try:
-            endtimes = request.POST.get('endtime')
-            if not endtimes:
-                return HttpResponse('请选择会议开始或结束时间')
-        except Exception as e:
-            print(e)
-
-
-    return HttpResponse('请使用正确Http请求方法 !')
-#查询相关

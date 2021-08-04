@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views
-
 urlpatterns = [
     path('', views.index, name='index'),
     path('createmeeting/', views.createmeeting),
@@ -11,6 +10,5 @@ urlpatterns = [
     path('list/', views.list_all),
     path('login/', views.login),
     path('logout/', views.logout),
-    path('newmeeting/', views.newmeeting),
     path('userinfo/', views.nuserinfo),
 ]
