@@ -28,20 +28,14 @@
     <label class="layui-form-label">预约人：</label>
     <div class="layui-input-inline">
       <select name="quiz1">
-          {% for user in userinfo %}
-             <option value="{{ user.truename }}">{{ user.truename }}</option>
-              {% empty %}
-            {% endfor %}
+             <option value="{{ user.username }}">{{ user.username }}</option>
       </select>
     </div>
      <label class="layui-form-label">所在部门：</label>
 
     <div class="layui-input-inline">
       <select name="quiz2">
-        {% for user in userinfo %}
              <option value="{{ user.department }}">{{ user.department }}</option>
-              {% empty %}
-            {% endfor %}
       </select>
 
       </select>
