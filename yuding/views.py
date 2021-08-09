@@ -1,11 +1,9 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login,logout
 
 from yuding.models import meetings
-from django.shortcuts import render, get_object_or_404
-from .forms import RegistrationForm, LoginForm, ProfileForm, PwdChangeForm
-from .models import UserProfile
-from django.contrib.auth.models import User
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import ProfileForm, PwdChangeForm
+from accounts.models import MyUser as User
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
@@ -14,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     dic = {
-        'title':'会议室预定系统',
+        'title': '会议室预定系统',
         'copyright': '某某有限公司 版权所有©2016-2021',
 
     }
@@ -52,50 +50,30 @@ def list_all(request):
     qs_all = meetings.objects.values()
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
-
-# # 登录相关
-# def login(request):
-#     if request.method == 'GET':
-#         #1, 首先检查session，判断用户是否第一次登录，如果不是，则直接重定向到首页
-#         if 'username' in request.session:
-#             return HttpResponseRedirect('/')
-#         #2, 然后检查cookie，是否保存了用户登录信息
-#         if 'username' in request.COOKIES:
-#             #若存在则赋值回session，并重定向到首页
-#             request.session['username'] = request.COOKIES['username']
-#             return  HttpResponseRedirect('/')
-#             #不存在则重定向登录页，让用户登录
-#         return render(request, 'huiyiyuding/login/index.html')
-#
-#     elif request.method == 'POST':
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         message = '请检查填写的内容！'
-#         if not username or not password:
-#             message = '用户名或密码错误'
-#             return render(request, 'huiyiyuding/login/index.html', locals())
-#         users = models.Userinfo.objects.filter(username=username, password=password)
-#         if not users:
-#             message = '用户不存在或者密码错误'
-#             return render(request, 'huiyiyuding/login/index.html', locals())
-#         users = users[0]
-#
-#     return render(request, 'huiyiyuding/core/admin.html')
-#
-#
-#
-#
-#
-# def logout(request):
-#     return redirect('/')
-#
-#
-
 @login_required
 def profile(request, pk):
     user = get_object_or_404(User, pk=pk)
     return render(request, 'huiyiyuding/core/users/profile.html', {'user': user})
 
+
+def login(request):
+    if request.method == 'POST':
+        user = request.POST.get('user')
+        pwd = request.POST.get('pwd')
+        # if 验证成功返回 user 对象，否则返回None
+        user = auth.authenticate(username=user, password=pwd)
+
+        if user:
+            # request.user ： 当前登录对象
+            auth.login(request, user)
+            # return HttpResponse("OK")
+            return redirect('/main/')
+
+    return render(request, 'huiyiyuding/core/admin.html')
+
+def logout(request):
+    auth.logout(request)
+    return redirect(request, '/index/')
 
 @login_required
 def profile_update(request, pk):
@@ -123,54 +101,6 @@ def profile_update(request, pk):
     return render(request, 'huiyiyuding/core/users/profile_update.html', {'form': form, 'user': user})
 
 
-def register(request):
-    if request.method == 'POST':
-
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password2']
-
-            # 使用内置User自带create_user方法创建用户，不需要使用save()
-            user = User.objects.create_user(username=username, password=password, email=email)
-
-            # 如果直接使用objects.create()方法后不需要使用save()
-            user_profile = UserProfile(user=user)
-            user_profile.save()
-
-            return HttpResponseRedirect("/login/")
-    else:
-        form = RegistrationForm()
-    return render(request, 'huiyiyuding/core/users/registration.html', {'form': form})
-
-
-def login(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-
-            user = auth.authenticate(username=username, password=password)
-
-            if user is not None and user.is_active:
-                auth.login(request, user)
-                return HttpResponseRedirect('/main/')
-            else:
-                # 登录失败
-                return render(request, 'huiyiyuding/login/index.html',
-                              {'form': form, 'message': 'Wrong password Please Try agagin'})
-    else:
-        form = LoginForm()
-
-    return render(request, 'huiyiyuding/login/index.html', {'form': form})
-
-
-@login_required
-def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect("/login/")
 
 
 @login_required

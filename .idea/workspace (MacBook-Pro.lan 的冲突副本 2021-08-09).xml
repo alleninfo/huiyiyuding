@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9a45b0d5-c55a-4e52-a3dd-f1dd5175f935" name="默认变更列表" comment="新增登录后，右上角正常显示用户名功能">
+      <change afterPath="$PROJECT_DIR$/yuding/migrations/0012_auto_20210809_0057.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yuding/migrations/0013_auto_20210809_0128.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuding/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/yuding/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuding/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/yuding/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuding/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/yuding/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuding/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/yuding/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1vvQdnRjpwTcwNYepn2yNLz0njK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="NEW_TOOLWINDOW_STRIPE_DEFAULTS" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/yuding/templates/huiyiyuding/core" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/yuding/templates/huiyiyuding/core" />
+      <recent name="E:\Dropbox\网站程序\开发\huiyixitong\yuding" />
+      <recent name="$PROJECT_DIR$/manager" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/yuding/templates/huiyiyuding/login" />
+      <recent name="$PROJECT_DIR$/yuding/templates/huiyiyuding/core" />
+      <recent name="$PROJECT_DIR$/yuding" />
+      <recent name="$PROJECT_DIR$/static/huiyiyuding" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.tests">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="huiyixitong" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tests" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="huiyixitong" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/yuding" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/yuding/tests.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="huiyixitong" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/yuding" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/yuding/views.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="huiyixitong" type="Python.DjangoServer" factoryName="Django server">
+      <module name="huiyixitong" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.tests" />
+        <item itemvalue="Python.views" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="9a45b0d5-c55a-4e52-a3dd-f1dd5175f935" name="默认变更列表" comment="" />
+      <created>1627440173109</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1627440173109</updated>
+      <workItem from="1627440174267" duration="9513000" />
+      <workItem from="1627519548336" duration="8716000" />
+      <workItem from="1627529923508" duration="11810000" />
+      <workItem from="1627552128263" duration="254000" />
+      <workItem from="1627552398755" duration="219000" />
+      <workItem from="1627553790588" duration="19000" />
+      <workItem from="1627610501216" duration="8230000" />
+      <workItem from="1627625261957" duration="6746000" />
+      <workItem from="1627634049672" duration="1006000" />
+      <workItem from="1627691691109" duration="1911000" />
+      <workItem from="1627693754971" duration="684000" />
+      <workItem from="1627694455547" duration="109000" />
+      <workItem from="1627694576244" duration="45000" />
+      <workItem from="1627701234960" duration="4066000" />
+      <workItem from="1627792707473" duration="5715000" />
+      <workItem from="1627865359690" duration="17644000" />
+      <workItem from="1627891308143" duration="155000" />
+      <workItem from="1627951162017" duration="2553000" />
+      <workItem from="1627957841151" duration="271000" />
+      <workItem from="1627958944680" duration="1228000" />
+      <workItem from="1627961304524" duration="134000" />
+      <workItem from="1627962112098" duration="5059000" />
+      <workItem from="1627971537749" duration="1053000" />
+      <workItem from="1628038315475" duration="10000" />
+      <workItem from="1628038354861" duration="16242000" />
+      <workItem from="1628470010746" duration="2514000" />
+    </task>
+    <task id="LOCAL-00001" summary="头一次上传">
+      <created>1627624777205</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1627624777205</updated>
+    </task>
+    <task id="LOCAL-00002" summary="新增所有会议室列表">
+      <created>1627628870185</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1627628870185</updated>
+    </task>
+    <task id="LOCAL-00003" summary="修改菜单，使其左边预定会议室、查看会议室工作正常">
+      <created>1627798373276</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1627798373276</updated>
+    </task>
+    <task id="LOCAL-00004" summary="修改菜单，使其左边预定会议室、查看会议室工作正常">
+      <created>1627865407089</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1627865407089</updated>
+    </task>
+    <task id="LOCAL-00005" summary="新增登录功能(2021.08.02新增)">
+      <created>1627877154470</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1627877154470</updated>
+    </task>
+    <task id="LOCAL-00006" summary="新增预定会议室表单，但是还未实现点击某个会议室预定，在选择栏自动加载名字(2021.08.02新增)">
+      <created>1627877222059</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1627877222059</updated>
+    </task>
+    <task id="LOCAL-00007" summary="新增预定会议室表单，但是还未实现点击某个会议室预定，在选择栏自动加载名字(2021.08.02新增)">
+      <created>1627877246491</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1627877246491</updated>
+    </task>
+    <task id="LOCAL-00008" summary="新增预定会议室表单，但是还未实现点击某个会议室预定，在选择栏自动加载名字(2021.08.02新增)">
+      <created>1627877261698</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1627877261698</updated>
+    </task>
+    <task id="LOCAL-00009" summary="8、新增个人中心，具体信息还未设置获取。">
+      <created>1627887505686</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1627887505686</updated>
+    </task>
+    <task id="LOCAL-00010" summary="8、新增个人中心，具体信息还未设置获取。">
+      <created>1627887548566</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1627887548566</updated>
+    </task>
+    <task id="LOCAL-00011" summary="8、新增个人中心，具体信息还未设置获取。">
+      <created>1627891424912</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1627891424912</updated>
+    </task>
+    <task id="LOCAL-00012" summary="修改预定会议室功能,下拉列表显示可预约会议室(2021.08.03)">
+      <created>1627963547145</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1627963547145</updated>
+    </task>
+    <task id="LOCAL-00013" summary="修改预定会议室功能,下拉列表显示可预约会议室(2021.08.03)">
+      <created>1627966514029</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1627966514029</updated>
+    </task>
+    <task id="LOCAL-00014" summary="增加预定会议室显示预约人和所在部门功能(2021.08.03新增)">
+      <created>1628039829169</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1628039829169</updated>
+    </task>
+    <task id="LOCAL-00015" summary="新增登录后，右上角正常显示用户名功能">
+      <created>1628053405327</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1628053405327</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="头一次上传" />
+    <MESSAGE value="新增所有会议室列表" />
+    <MESSAGE value="修改菜单，使其左边预定会议室、查看会议室工作正常" />
+    <MESSAGE value="新增登录功能(2021.08.02新增)" />
+    <MESSAGE value="新增预定会议室表单，但是还未实现点击某个会议室预定，在选择栏自动加载名字(2021.08.02新增)" />
+    <MESSAGE value="8、新增个人中心，具体信息还未设置获取。" />
+    <MESSAGE value="修改预定会议室功能,下拉列表显示可预约会议室(2021.08.03)" />
+    <MESSAGE value="增加预定会议室显示预约人和所在部门功能(2021.08.03新增)" />
+    <MESSAGE value="新增登录后，右上角正常显示用户名功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="新增登录后，右上角正常显示用户名功能" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/huiyixitong$views.coverage" NAME="views 覆盖结果" MODIFIED="1627874712064" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/yuding" />
+    <SUITE FILE_PATH="coverage/huiyixitong$test.coverage" NAME="test 覆盖结果" MODIFIED="1627866468339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/huiyixitong$tests.coverage" NAME="tests 覆盖结果" MODIFIED="1627874889574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/yuding" />
+  </component>
+</project>
