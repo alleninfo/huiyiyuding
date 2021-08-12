@@ -6,9 +6,7 @@ class meetings(models.Model):
     people = models.CharField(max_length=100, null=True,verbose_name=u'容纳人数')
     starttime = models.DateTimeField(auto_now=True,null=True, verbose_name=u'开始时间')
     endtime = models.DateTimeField(auto_now=True,null=True,  verbose_name=u'结束时间')
-    createname = models.DateTimeField(null=True, verbose_name=u'预约人')
-    pretime = models.DateTimeField(auto_now=True,null=True,verbose_name=u'会议持续时间')
-
+    createname = models.CharField(max_length=200, null=True, verbose_name=u'预约人')
 
     class Meta:
         ordering = ['name']

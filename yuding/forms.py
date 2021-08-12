@@ -1,6 +1,9 @@
+from datetime import date
+
 from django import forms
-from django.contrib.auth.models import User
 import re
+
+from django.forms import DateInput
 
 
 def email_check(email):
@@ -48,3 +51,14 @@ class PwdChangeForm(forms.Form):
             raise forms.ValidationError("Password mismatch Please enter again")
 
         return password2
+
+
+class applymeeting(forms.Form):
+    meetingname = forms.CharField(label='meeting', max_length=100)
+    start_date = forms.DateField(initial=date.today().replace(),
+                                 label='开始时间', widget=DateInput(format='%Y-%m-%d %H:%M:%S'),
+                                 input_formats=['%Y-%m-%d %H:%M:%S'])
+    end_date = forms.DateField(initial=date.today().replace(),
+                                 label='结束时间', widget=DateInput(format='%Y-%m-%d %H:%M:%S'),
+                                 input_formats=['%Y-%m-%d %H:%M:%S'])
+    applyname = forms.CharField(max_length=100)

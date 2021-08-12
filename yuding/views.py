@@ -1,13 +1,16 @@
-from django.contrib.auth import authenticate, login,logout
-
-from yuding.models import meetings
-from django.shortcuts import render, get_object_or_404, redirect
-from .forms import ProfileForm, PwdChangeForm
-from accounts.models import MyUser as User
-from django.http import HttpResponseRedirect
 from django.contrib import auth
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse
+from accounts.models import MyUser as User
+from yuding.models import meetings
+from . import forms
+from .forms import ProfileForm, PwdChangeForm, applymeeting
+from . import models
+
+
+
 
 
 def index(request):
@@ -25,13 +28,14 @@ def mains(request):
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
 
+
 def createmeeting(request):
     qs_creates = meetings.objects.filter(starttime__isnull=True)
     return render(request, 'huiyiyuding/core/newmeeting.html', {'name': qs_creates})
 
 def changemeeting(request):
-    qs_change = meetings.objects.filter(createname=True)
-    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': qs_change})
+    show_qs = meetings.objects.filter()
+    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': show_qs})
 
 
 def deletemeeting(request):
@@ -41,9 +45,8 @@ def deletemeeting(request):
 
 
 def mycreate(request):
-    qs_my = meetings.objects.values()
-    my_create = qs_my.filter()
-    return render(request, 'huiyiyuding/core/mycreate.html', {'name': my_create})
+    qs = meetings.objects.filter(username=username)
+    return render(request, 'huiyiyuding/core/mycreate.html', {'name':qs})
 
 
 def list_all(request):
@@ -58,8 +61,8 @@ def profile(request, pk):
 
 def login(request):
     if request.method == 'POST':
-        user = request.POST.get('user')
-        pwd = request.POST.get('pwd')
+        user = request.POST.get('username')
+        pwd = request.POST.get('password')
         # if 验证成功返回 user 对象，否则返回None
         user = auth.authenticate(username=user, password=pwd)
 
@@ -73,7 +76,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect(request, '/index/')
+    return render(request, 'huiyiyuding/login/index.html')
 
 @login_required
 def profile_update(request, pk):
@@ -99,9 +102,6 @@ def profile_update(request, pk):
         form = ProfileForm(default_data)
 
     return render(request, 'huiyiyuding/core/users/profile_update.html', {'form': form, 'user': user})
-
-
-
 
 @login_required
 def pwd_change(request, pk):
@@ -130,3 +130,19 @@ def pwd_change(request, pk):
         form = PwdChangeForm()
 
     return render(request, 'huiyiyuding/core/users/pwd_change.html', {'form': form, 'user': user})
+
+def bookmeet(request):
+    if request.method =='POST':
+            apply_name = request.POST.get('applyname')
+            meetingname = request.POST.get('meeting')
+            stime = request.POST.get('stime')
+            etime = request.POST.get('etime')
+            _update_meeting = meetings.objects.get(name=meetingname)
+            _update_meeting.name=meetingname
+            _update_meeting.starttime=stime
+            _update_meeting.endtime=etime
+            _update_meeting.createname=apply_name
+            _update_meeting.save()
+            show_qs = meetings.objects.filter(createname=apply_name)
+            return redirect('/mycreate/')
+    return render(request, 'huiyiyuding/core/list.html', locals())

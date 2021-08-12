@@ -1,11 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
-)
+    BaseUserManager, AbstractBaseUser)
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, username, email, password=None):
+    def create_user(self, username, email=None, password=None):
         """
         Creates and saves a User with the given email, date of
         birth and password.
@@ -23,14 +22,14 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, username, email, password=None):
+    def create_superuser(self, username, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
+
         user = self.create_user(
             username,
-            email=email,
             password=password,
         )
         user.is_admin = True
@@ -45,11 +44,10 @@ class MyUser(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
-        unique=True,
     )
     gender = models.CharField(max_length=10, choices=(("male", u'男'), ("female", u'女')), default='female')
     phone = models.CharField(max_length=11,verbose_name=u"手机号码", null=True, blank=True)
-    department = models.CharField(max_length=10, choices=(("jishu", u'技术部'), ("xingzheng", u'行政部')), default='jishu')
+    department = models.CharField(max_length=10, choices=(("jishu", u'技术部'), ("xingzheng", u'行政部')), default=u'技术部')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

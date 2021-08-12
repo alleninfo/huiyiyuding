@@ -2,7 +2,7 @@
 {% include 'huiyiyuding/core/base.html' %}
 
     <div style="padding: 15px;">
-        <div class="layui-form">
+         <div class="layui-form">
               <table class="layui-table">
                 <colgroup>
                   <col width="150">
@@ -18,29 +18,19 @@
                     <th>开始时间</th>
                     <th>结束时间</th>
                     <th>预约人</th>
-                    <th>会议时长</th>
-                    <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                        {% for meeting in name %}
+                            {% for meeting in show_qs %}
                         <tr>
                             {% for name, value in meeting.items %}
                               <td>{{ value }}</td>
-
                             {% endfor %}
-                        <td>
-                            <div class="layui-btn-group">
-                                  <button type="button" class="layui-btn">预定</button>
-                                  <button type="button" class="layui-btn ">编辑</button>
-                                  <button type="button" class="layui-btn">删除</button>
-                                </div></td>
                         </tr>
-
                         {% endfor %}
-
                 </tbody>
               </table>
             </div>
     </div>
+ </div>
 {% include 'huiyiyuding/core/foot.html' %}
