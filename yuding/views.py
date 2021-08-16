@@ -5,9 +5,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from accounts.models import MyUser as User
 from yuding.models import meetings
-from . import forms
-from .forms import ProfileForm, PwdChangeForm, applymeeting
-from . import models
+from .forms import ProfileForm, PwdChangeForm
 
 
 
@@ -34,18 +32,24 @@ def createmeeting(request):
     return render(request, 'huiyiyuding/core/newmeeting.html', {'name': qs_creates})
 
 def changemeeting(request):
-    show_qs = meetings.objects.filter()
-    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': show_qs})
+    user1 = request.user
+    qs = meetings.objects.filter(createname=user1)
+    return render(request, 'huiyiyuding/core/changemeeting.html', {'name': qs})
 
 
 def deletemeeting(request):
-    qs_creat = meetings.objects.values()
-    delete = qs_creat.filter()
-    return render(request, 'huiyiyuding/core/deletemeeting.html', {'name': delete})
+    user1 = request.user
+    _delete_meeting = meetings.objects.get(createname=user1)
+    _delete_meeting.starttime=None
+    _delete_meeting.endtime=None
+    _delete_meeting.createname=None
+    _delete_meeting.save()
+    return render(request, 'huiyiyuding/core/list.html')
 
 
 def mycreate(request):
-    qs = meetings.objects.filter(username=username)
+    user1 = request.user
+    qs = meetings.objects.filter(createname=user1)
     return render(request, 'huiyiyuding/core/mycreate.html', {'name':qs})
 
 
@@ -69,8 +73,9 @@ def login(request):
         if user:
             # request.user ： 当前登录对象
             auth.login(request, user)
-            # return HttpResponse("OK")
-            return redirect('/main/')
+            #return HttpResponse("OK")
+
+        #return redirect('/main/')
 
     return render(request, 'huiyiyuding/core/admin.html')
 
@@ -146,3 +151,5 @@ def bookmeet(request):
             show_qs = meetings.objects.filter(createname=apply_name)
             return redirect('/mycreate/')
     return render(request, 'huiyiyuding/core/list.html', locals())
+
+

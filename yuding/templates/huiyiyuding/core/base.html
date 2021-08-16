@@ -36,22 +36,21 @@
       </li>
     </ul>
     <ul class="layui-nav layui-layout-right">
-        { %  if  request.user.is_authenticated  % }
-      <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-        <a href="javascript:;">
-          <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
-            {{ user.username }}</a>
-         { %  else  % }
-            <a href="/login/">登陆</a>
-         { %  endif  % }
-
-        </a>
-        <dl class="layui-nav-child">
-          <dd><a href="/userinfo/">个人中心</a></dd>
-          <dd><a href="">修改密码</a></dd>
-          <dd><a href="/logout/">退出登录</a></dd>
-        </dl>
+        { % if request.user.is_authenticated % }
+          <li class="layui-nav-item layui-hide layui-show-md-inline-block">
+            <a href="javascript:;">
+              <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+                {{ user.username }}</a>
+                  <dl class="layui-nav-child">
+                  <dd><a href="/userinfo/">个人中心</a></dd>
+                  <dd><a href="/changepasswd/">修改密码</a></dd>
+                  <dd><a href="/logout/">退出登录</a></dd>
+                </dl>
+{#        { % else % }#}
+{#            <a href="/login/">登陆</a>#}
       </li>
+         { % endif % }
+
       <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
         <a href="javascript:;">
           <i class="layui-icon layui-icon-more-vertical"></i>

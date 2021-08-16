@@ -18,16 +18,24 @@
                     <th>开始时间</th>
                     <th>结束时间</th>
                     <th>预约人</th>
+                    <th>操作</th>
                   </tr>
                 </thead>
                 <tbody>
-                            {% for meeting in show_qs %}
+
                         <tr>
-                            {% for name, value in meeting.items %}
-                              <td>{{ value }}</td>
+                            {% for i in name %}
+                             <td>{{ i.id }}</td>
+                             <td>{{ i.name }}</td>
+                             <td>{{ i.people }}</td>
+                             <td>{{ i.starttime }}</td>
+                             <td>{{ i.endtime }}</td>
+                             <td>{{ i.createname }}</td>
                             {% endfor %}
+                            <td>  <button type="button" onclick="javascript:window.location.href='/changemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>
+  <button type="button" onclick="javascript:window.location.href='/deletemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button></td>
                         </tr>
-                        {% endfor %}
+
                 </tbody>
               </table>
             </div>

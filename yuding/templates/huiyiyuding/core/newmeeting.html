@@ -10,13 +10,14 @@
         <label class="layui-form-label">选择会议室：</label>
         <div class="layui-input-block">
 
-             <select name="meeting" lay-verify="required">
-                    {% for meeting in name %}
+                 <select name="meeting" lay-verify="required">
+                                 {% for meeting in name %}
+
                      <option value="{{ meeting }}">{{ meeting }} </option>
                     {% empty %}
-                    {% endfor %}
-              </select>
+                                 {% endfor %}
 
+              </select>
         </div>
       </div>
     <div class="layui-form-item">
