@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% load static %}
+{% include 'huiyiyuding/core/base.html' %}
 
-</body>
-</html>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+  <legend>{{ user.username }}个人资料</legend>
+</fieldset>
+
+<table class="layui-table" lay-even="" lay-skin="nob">
+  <colgroup>
+    <col width="150">
+    <col width="150">
+    <col width="200">
+    <col>
+  </colgroup>
+  <thead>
+    <tr>
+        {% for users in user %}
+      <th>用户名:</th>
+      <th>{{ users.username }}</th>
+        {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+{#      {% for users in user %}#}
+{#      <td>{{ users.password }}</td>#}
+{#      {% endfor %}#}
+
+    </tr>
+    <tr>
+        {% for users in user %}
+
+      <td>真实姓名：</td>
+      <td>{{ users.fullname }}</td>
+        {% endfor %}
+
+    </tr>
+    <tr>
+        {% for users in user %}
+
+      <td>性别：</td>
+      <td>{{ users.gender }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for users in user %}
+
+      <td>所在部门：</td>
+      <td>{{ users.department }}</td>
+        {% endfor %}
+    </tr>
+    <tr>
+        {% for users in user %}
+
+      <td>手机号码：</td>
+      <td>{{ users.phone }}</td>
+        {% endfor %}
+    </tr>
+      <tr>
+        {% for users in user %}
+
+      <td>电子邮箱：</td>
+      <td>{{ users.email }}</td>
+        {% endfor %}
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+{% include 'huiyiyuding/core/foot.html' %}

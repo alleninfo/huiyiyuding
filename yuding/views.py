@@ -57,11 +57,6 @@ def list_all(request):
     qs_all = meetings.objects.values()
     return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
 
-@login_required
-def profile(request, pk):
-    user = get_object_or_404(User, pk=pk)
-    return render(request, 'huiyiyuding/core/users/profile.html', {'user': user})
-
 
 def login(request):
     if request.method == 'POST':
@@ -82,6 +77,15 @@ def login(request):
 def logout(request):
     auth.logout(request)
     return render(request, 'huiyiyuding/login/index.html')
+
+
+
+@login_required
+def profile(request):
+    user1 = request.user
+    qs = User.objects.filter(username=user1)
+    return render(request, 'huiyiyuding/core/users/profile.html', {'user': qs})
+
 
 @login_required
 def profile_update(request, pk):
@@ -150,6 +154,6 @@ def bookmeet(request):
             _update_meeting.save()
             show_qs = meetings.objects.filter(createname=apply_name)
             return redirect('/mycreate/')
-    return render(request, 'huiyiyuding/core/list.html', locals())
+    return render(request, 'huiyiyuding/core/mycreate.html', locals())
 
 
