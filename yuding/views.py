@@ -143,6 +143,34 @@ def pwd_change(request):
 
     return render(request, 'huiyiyuding/core/users/pwd_change.html', {'form': form, 'user': user})
 
+def password_reset(request):
+    return render(request, 'huiyiyuding/core/users/password_reset_form.html')
+
+def password_reset_done(request):
+    return render(request, 'huiyiyuding/core/users/password_reset_done.html')
+
+def password_reset_confirm(request):
+    return render(request, 'huiyiyuding/core/users/password_reset_confirm.html')
+
+def password_reset_complete(request):
+    return render(request, 'huiyiyuding/core/users/password_reset_complete.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def bookmeet(request):
     if request.method =='POST':
             apply_name = request.POST.get('applyname')
@@ -157,7 +185,7 @@ def bookmeet(request):
         return HttpResponse('预定失败，没有可用的会议室')
 
 
-def theendtime(request):
+def a_delete_meetings(request):
     now = timezone.now()
     meetings.objects.filter(endtime__lte=now).update(starttime=None, endtime=None, createname=None)
     return render(request, 'huiyiyuding/core/list.html')
