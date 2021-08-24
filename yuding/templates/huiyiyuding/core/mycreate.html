@@ -22,19 +22,20 @@
                   </tr>
                 </thead>
                 <tbody>
-
+                {% for i in name %}
                         <tr>
-                            {% for i in name %}
                              <td>{{ i.id }}</td>
                              <td>{{ i.name }}</td>
                              <td>{{ i.people }}</td>
                              <td>{{ i.starttime }}</td>
                              <td>{{ i.endtime }}</td>
                              <td>{{ i.createname }}</td>
-                            {% endfor %}
                             <td>  <button type="button" onclick="javascript:window.location.href='/changemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>
   <button type="button" onclick="javascript:window.location.href='/deletemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button></td>
+
+
                         </tr>
+                            {% endfor %}
 
                 </tbody>
               </table>

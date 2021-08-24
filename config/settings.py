@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'yuding',
     'config',
     'accounts',
+    # 'password_reset',
 ]
 
 MIDDLEWARE = [
@@ -114,15 +115,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -141,3 +142,20 @@ AUTH_USER_MODEL = 'accounts.MyUser'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+# 媒体文件地址
+MEDIA_URL = '/upload/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload/')
+
+
+# SMTP服务器，改为你的邮箱的smtp!
+EMAIL_HOST = 'smtp.qq.com'
+# 改为你自己的邮箱名！
+EMAIL_HOST_USER = 'your_email_account@xxx.com'
+# 你的邮箱密码
+EMAIL_HOST_PASSWORD = 'your_password'
+# 发送邮件的端口
+EMAIL_PORT = 25
+# 是否使用 TLS
+EMAIL_USE_TLS = True
+# 默认的发件人
+DEFAULT_FROM_EMAIL = 'xxx的博客 <your_email_account@xxx.com>'

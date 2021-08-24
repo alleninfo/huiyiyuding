@@ -1,30 +1,20 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from accounts.models import MyUser as User
 from yuding.models import meetings
-from .forms import ProfileForm, PwdChangeForm
-
-
+from django.utils import timezone
+from .forms import UploadFileForm
 
 
 
 def index(request):
-    dic = {
-        'title': '会议室预定系统',
-        'copyright': '某某有限公司 版权所有©2016-2021',
+        title = '会议室预定系统',
+        copyright1 = '某某有限公司 版权所有©2021',
 
-    }
-
-    return render(request, 'huiyiyuding/login/index.html', dic)
-
-
-def mains(request):
-    qs_all = meetings.objects.values()
-    return render(request, 'huiyiyuding/core/list.html', {'name': qs_all})
-
+        return render(request, 'huiyiyuding/login/index.html', locals())
 
 
 def createmeeting(request):
@@ -39,11 +29,13 @@ def changemeeting(request):
 
 def deletemeeting(request):
     user1 = request.user
-    _delete_meeting = meetings.objects.get(createname=user1)
-    _delete_meeting.starttime=None
-    _delete_meeting.endtime=None
-    _delete_meeting.createname=None
-    _delete_meeting.save()
+    meetings.objects.filter(createname=user1).update(starttime=None, endtime=None, createname=None)
+
+    # _delete_meeting = meetings.objects.get(createname=user1)
+    # _delete_meeting.starttime = None
+    # _delete_meeting.endtime = None
+    # _delete_meeting.createname = None
+    # _delete_meeting.save()
     return render(request, 'huiyiyuding/core/list.html')
 
 
@@ -68,17 +60,15 @@ def login(request):
         if user:
             # request.user ： 当前登录对象
             auth.login(request, user)
-            #return HttpResponse("OK")
+            return redirect('/list/')
+        else:
+            return HttpResponse('用户名或密码错误')
 
-        #return redirect('/main/')
-
-    return render(request, 'huiyiyuding/core/admin.html')
+    return render(request, 'huiyiyuding/core/list.html')
 
 def logout(request):
     auth.logout(request)
     return render(request, 'huiyiyuding/login/index.html')
-
-
 
 @login_required
 def profile(request):
@@ -86,16 +76,29 @@ def profile(request):
     qs = User.objects.filter(username=user1)
     return render(request, 'huiyiyuding/core/users/profile.html', {'user': qs})
 
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_file(request.FILES['file'])
+            return HttpResponseRedirect('/success/url/')
+
+    else:
+        form = UploadFileForm()
+    return render(request,'huiyiyuding/core/users/upload.html',{'form':form})
+
+def handle_uploaded_file(f):
+    with open('huiyiyuding/upload/images/title.jpg', 'wb+') as destination:
+        for chunk in f.chunk():
+            destination.write(chunk)
 
 @login_required
-def profile_update(request, pk):
-    user = get_object_or_404(User, pk=pk)
+def profile_update(request):
+    user = get_object_or_404(User)
     user_profile = get_object_or_404(User, user=user)
 
     if request.method == 'POST':
-        form = ProfileForm(request.POST)
-
-        if form.is_valid():
+        if user.is_valid():
             user.first_name = form.cleaned_data['first_name']
             user.last_name = form.cleaned_data['last_name']
             user.save()
@@ -113,8 +116,8 @@ def profile_update(request, pk):
     return render(request, 'huiyiyuding/core/users/profile_update.html', {'form': form, 'user': user})
 
 @login_required
-def pwd_change(request, pk):
-    user = get_object_or_404(User, pk=pk)
+def pwd_change(request):
+    user = get_object_or_404(User)
 
     if request.method == "POST":
         form = PwdChangeForm(request.POST)
@@ -146,14 +149,15 @@ def bookmeet(request):
             meetingname = request.POST.get('meeting')
             stime = request.POST.get('stime')
             etime = request.POST.get('etime')
-            _update_meeting = meetings.objects.get(name=meetingname)
-            _update_meeting.name=meetingname
-            _update_meeting.starttime=stime
-            _update_meeting.endtime=etime
-            _update_meeting.createname=apply_name
-            _update_meeting.save()
+            meetings.objects.filter(name=meetingname).update(name=meetingname,starttime=stime,
+                                                             endtime=etime, createname=apply_name)
             show_qs = meetings.objects.filter(createname=apply_name)
-            return redirect('/mycreate/')
-    return render(request, 'huiyiyuding/core/mycreate.html', locals())
+            return render(request, 'huiyiyuding/core/mycreate.html', locals())
+    else:
+        return HttpResponse('预定失败，没有可用的会议室')
 
 
+def theendtime(request):
+    now = timezone.now()
+    meetings.objects.filter(endtime__lte=now).update(starttime=None, endtime=None, createname=None)
+    return render(request, 'huiyiyuding/core/list.html')
