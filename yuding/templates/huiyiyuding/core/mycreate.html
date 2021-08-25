@@ -3,6 +3,7 @@
 
     <div style="padding: 15px;">
          <div class="layui-form">
+
               <table class="layui-table">
                 <colgroup>
                   <col width="150">
@@ -30,16 +31,16 @@
                              <td>{{ i.starttime }}</td>
                              <td>{{ i.endtime }}</td>
                              <td>{{ i.createname }}</td>
-                            <td>  <button type="button" onclick="javascript:window.location.href='/changemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button>
-  <button type="button" onclick="javascript:window.location.href='/deletemeeting/'" class="layui-btn layui-btn-sm"><i class="layui-icon"></i></button></td>
 
-
-                        </tr>
+                            <td>
+                            <button type="button" onclick="javascript:window.location.href='/changemeeting/'" class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon"></i></button>
+                            <button type="button" onclick="javascript:window.location.href='/deletemeeting/'" class="layui-btn layui-btn-sm " lay-event="del"><i class="layui-icon"></i></button></td>
+                            </tr>
                             {% endfor %}
-
                 </tbody>
               </table>
             </div>
     </div>
- </div>
+    </div>
+
 {% include 'huiyiyuding/core/foot.html' %}

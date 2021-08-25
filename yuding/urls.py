@@ -15,8 +15,6 @@ urlpatterns = [
     re_path(r'^login/$', views.login, name='login'),
     re_path(r'^logout/$', views.logout, name='logout'),
     re_path(r'^user/profile/$', views.profile, name='profile'),
-    re_path(r'^user/profile/update/$', views.profile_update, name='profile_update'),
-    re_path(r'^user/pwd_change/$', views.pwd_change, name='pwd_change'),
     re_path(r'^bookmeeting/', views.bookmeet, name='bookmeet'),
 
 ]
