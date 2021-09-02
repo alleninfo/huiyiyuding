@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'yuding',
     'config',
     'accounts',
+
 ]
 
 MIDDLEWARE = [

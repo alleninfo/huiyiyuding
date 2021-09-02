@@ -4,43 +4,167 @@
     <div style="padding: 15px;">
          <div class="layui-form">
 
-              <table class="layui-table">
-                <colgroup>
-                  <col width="150">
-                  <col width="150">
-                  <col width="200">
-                  <col>
-                </colgroup>
-                <thead>
-                  <tr>
-                    <th>序号</th>
-                    <th>会议室名称</th>
-                    <th>容纳人数</th>
-                    <th>开始时间</th>
-                    <th>结束时间</th>
-                    <th>预约人</th>
-                    <th>操作</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for i in name %}
-                        <tr>
-                             <td>{{ i.id }}</td>
-                             <td>{{ i.name }}</td>
-                             <td>{{ i.people }}</td>
-                             <td>{{ i.starttime }}</td>
-                             <td>{{ i.endtime }}</td>
-                             <td>{{ i.createname }}</td>
+<script src="https://cdn.staticfile.org/jquery/2.2.4/jquery.min.js"></script>
+<script src="{% static 'huiyiyuding/layui.js' %}" charset="utf-8"></script>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 
-                            <td>
-                            <button type="button" onclick="javascript:window.location.href='/changemeeting/'" class="layui-btn layui-btn-sm" lay-event="edit"><i class="layui-icon"></i></button>
-                            <button type="button" onclick="javascript:window.location.href='/deletemeeting/'" class="layui-btn layui-btn-sm " lay-event="del"><i class="layui-icon"></i></button></td>
-                            </tr>
-                            {% endfor %}
-                </tbody>
-              </table>
-            </div>
-    </div>
-    </div>
 
+
+<table class="layui-hide" id="demo" lay-filter="test"></table>
+
+             <script type="text/javascript">
+   layui.use('table', function(){
+      var table = layui.table;
+      table.render({
+          elem: '#demo',
+          url:'/update_meeting/',
+          toolbar: '#toolbarDemo',         // 显示工具条
+          request: {
+                  pageName: 'pageIndex',  // 页码的参数名称，默认：page
+                  limitName: 'pageSize'   // 每页数据量的参数名，默认：limit
+          },
+          response: {
+                  statusName: 'code',     // 规定数据状态的字段名称，默认：code
+                  statusCode: 0,          // 规定成功的状态码，默认：0
+                  msgName: 'msg',         // 规定状态信息的字段名称，默认：msg
+                  countName: 'DataCount', // 规定数据总数的字段名称，默认：count
+                  dataName: 'data'        // 规定数据列表的字段名称，默认：data
+          }
+          ,cols: [[
+          {type: 'checkbox', fixed: 'left'},
+          {field:'id', title:'ID', width:80, sort: true},
+          {field:'name', title:'会议室名称', width:122},
+          {field:'people', title:'容纳人数', width:100},
+          {field:'starttime', title:'开始时间', width:180},
+          {field:'endtime', title:'结束时间', width:180},
+          {field:'createname', title:'预约人', width:120},
+          ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+
+        ]]
+        ,page: {
+            layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'],     // 自定义分页布局
+            curr: 1,      // 设置默认起始页1
+            groups: 10,   //只显示10个连续页码,就是说显示10个可见页其他的省略
+            first: false, // 不显示首页
+            last: false   // 不显示尾页
+        },
+        limit: 5,
+        limits: [5,10,15,20,25]
+      });
+    // 监听行工具事件：也就是编辑与删除的处理事件
+      table.on('tool(test)', function(obj){
+        var data = obj.data;
+        if(obj.event === 'del'){
+          layer.confirm('真的要删除本行数据吗 ?', function(index){
+            // console.log("待删除ID: " + obj.data['id']);
+           $.ajax({
+               url:"/delete_page/",
+               type:"get",
+               data: {"id":obj.data['id']},
+               success:function (recv) {
+                   layer.msg("删除完成了..", {icon: 6});
+               }
+           });
+            obj.del();
+            layer.close(index);
+          });
+
+
+
+        } else if(obj.event === 'edit'){
+          layer.prompt({ formType:2, title: "编辑表格",btn:['修改数据','关闭'],anim: 4,
+              content:`<div>
+                            ID: <input type="text" style='display:inline-block' id="id"><br><br>
+                            会议室名称: <input type="text" style='display:inline-block' id="name"><br><br>
+                            容纳人数: <input type="text" style='display:inline-block' id="people"><br><br>
+                            开始时间: <input type="text" style='display:inline-block' id="starttime"><br><br>
+                            结束时间: <input type="text" style='display:inline-block' id="endtime"><br><br>
+                            预约人: <input type="text" style='display:inline-block' id="createname"><br><br>
+
+                       </div>`,
+              yes:function (index,layero)
+              {
+                  console.log("点击yes触发事件:" + index);
+                  var id = $("#id").val();
+                  var name = $("#name").val();
+                  var people = $("#people").val();
+                  var starttime = $("#starttime").val();
+                  var endtime = $("#endtime").val();
+                  var createname = $("#createname").val();
+                  $.ajax({
+                      url: "/update_page",
+                      type: "get",
+                      data: {"id": id,
+                              "name": name,
+                              "people": people,
+                              "starttime": starttime,
+                              "endtime": endtime,
+                              "createname": createname },
+                      success:function (recv) {
+                        // 修改完成后,本地直接更新数据,这样就无需刷新一次了
+                          obj.update({
+                              id: id,
+                              name: name,
+                              people: people,
+                              starttime:starttime,
+                              endtime:endtime,
+                              createname:createname,
+                          });
+                          layer.msg("修改完成了..", {icon: 6});
+                          layer.close(index);
+                      }
+                  });
+              }
+          });
+              $("#id").val(data.id);
+              $("#name").val(data.name);
+              $("#people").val(data.people);
+              $("#starttime").val(data.starttime);
+              $("#endtime").val(data.endtime);
+              $("#createname").val(data.createname);
+        }
+      });
+
+        // 搜索后的重载
+    var $ = layui.$, active = {
+        reload: function(){
+          var demoReload = $('#demoReload');
+          //执行重载
+          table.reload('testReload', {
+            url:"/search_page",
+            page: {
+              curr: 1,
+              limits: [1]
+            }
+            ,where: {
+                hostname: demoReload.val()
+            }
+          }, 'data');
+        }
+      };
+    // ---------------------------------------------------------
+    // 绑定搜索事件
+      $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+          });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
 {% include 'huiyiyuding/core/foot.html' %}

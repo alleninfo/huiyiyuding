@@ -1,22 +1,19 @@
-from django.urls import re_path, include
-from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
 
+from . import views
 
 app_name = 'yuding'
 urlpatterns = [
-    re_path(r'^$', views.index, name='index'),
-    re_path(r'^createmeeting/', views.createmeeting, name='createmeeting'),
-    re_path(r'^changemeeting/', views.changemeeting, name='changemeeting'),
-    re_path(r'^deletemeeting/', views.deletemeeting, name='deletemeeting'),
-    re_path(r'^mycreate/', views.mycreate, name='mycreate'),
-    re_path(r'^list/', views.list_all, name='list'),
-    re_path(r'^login/$', views.login, name='login'),
-    re_path(r'^logout/$', views.logout, name='logout'),
-    re_path(r'^user/profile/$', views.profile, name='profile'),
-    re_path(r'^bookmeeting/', views.bookmeet, name='bookmeet'),
-
+    path('', views.index, name='index'),
+    path('createmeeting/', views.createmeeting, name='createmeeting'),
+    path('mycreate/', views.mycreate, name='mycreate'),
+    path('list/', views.list_all, name='list'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+    path('user/profile/', views.profile, name='profile'),
+    path('bookmeeting/', views.bookmeet, name='bookmeet'),
+    path('update_meeting/', views.get_json, name='getdate'),
+    path('delete_page/',views.delete_page),
+    path("update_page/",views.update_page)
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
