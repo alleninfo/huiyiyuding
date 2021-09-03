@@ -13,8 +13,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 def index(request):
-    title = '会议室预定系统',
-    copyright1 = '某某有限公司 版权所有©2021',
+    title = u'会议室预定系统',
+    copyright1 = u'某某有限公司 版权所有©2021',
 
     return render(request, 'huiyiyuding/login/index.html', locals())
 
@@ -58,13 +58,13 @@ def update_page(request):
     get_endtime = request.GET.get("endtime")
     get_createname = request.GET.get("createname")
 
-    meetings.objects.get(id=get_id).update(name=get_name, people=get_people, starttime=get_starttime, endtime=get_endtime, createname=get_createname)
-    # obj.name = get_name
-    # obj.people = get_people
-    # obj.starttime = get_starttime
-    # obj.endtime = get_endtime
-    # obj.createname = get_createname
-    # obj.save()
+    obj = meetings.objects.get(id=get_id)
+    obj.name = get_name
+    obj.people = get_people
+    obj.starttime = get_starttime
+    obj.endtime = get_endtime
+    obj.createname = get_createname
+    obj.save()
     return render(request,"index.html")
 
 

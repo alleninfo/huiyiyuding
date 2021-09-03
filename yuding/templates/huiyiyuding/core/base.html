@@ -72,18 +72,20 @@
 
           </dl>
         </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">管理员菜单</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">会议室管理</a></dd>
-            <dd><a href="javascript:;">用户管理</a></dd>
-             <dd><a href="javascript:;">系统日志</a></dd>
-             <dd><a href="javascript:;">操作记录</a></dd>
-            <dd><a href="">超链接</a></dd>
-          </dl>
+                      {% if request.user.is_superuser %}
+
+                <li class="layui-nav-item">
+                  <a href="javascript:;">管理员菜单</a>
+                  <dl class="layui-nav-child">
+                    <dd><a href="javascript:;">会议室管理</a></dd>
+                    <dd><a href="javascript:;">用户管理</a></dd>
+                     <dd><a href="javascript:;">系统日志</a></dd>
+                     <dd><a href="javascript:;">操作记录</a></dd>
+                  </dl>
+
+
         </li>
-        <li class="layui-nav-item"><a href="javascript:;">click menu item</a></li>
-        <li class="layui-nav-item"><a href="">the links</a></li>
+                      {% endif %}
       </ul>
     </div>
   </div>
