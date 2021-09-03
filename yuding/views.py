@@ -15,8 +15,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 def index(request):
     title = u'会议室预定系统',
     copyright1 = u'某某有限公司 版权所有©2021',
-
-    return render(request, 'huiyiyuding/login/index.html', locals())
+    return render(request, 'huiyiyuding/login/index.html', {'title':title, 'copyright':copyright1})
 
 
 def createmeeting(request):
