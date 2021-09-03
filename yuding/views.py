@@ -1,13 +1,15 @@
-import json
-
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
-from django.utils import timezone
 
 from accounts.models import MyUser as User
 from yuding.models import meetings
+
+from apscheduler.schedulers.background import BackgroundScheduler
+
+
+
 
 
 def index(request):
@@ -56,13 +58,13 @@ def update_page(request):
     get_endtime = request.GET.get("endtime")
     get_createname = request.GET.get("createname")
 
-    obj = meetings.objects.get(id=get_id)
-    obj.name = get_name
-    obj.people = get_people
-    obj.starttime = get_starttime
-    obj.endtime = get_endtime
-    obj.createname = get_createname
-    obj.save()
+    meetings.objects.get(id=get_id).update(name=get_name, people=get_people, starttime=get_starttime, endtime=get_endtime, createname=get_createname)
+    # obj.name = get_name
+    # obj.people = get_people
+    # obj.starttime = get_starttime
+    # obj.endtime = get_endtime
+    # obj.createname = get_createname
+    # obj.save()
     return render(request,"index.html")
 
 
@@ -109,5 +111,18 @@ def bookmeet(request):
         etime = request.POST.get('etime')
         meetings.objects.filter(name=meetingname).update(name=meetingname, starttime=stime,
                                                          endtime=etime, createname=apply_name)
-        # show_qs = meetings.objects.filter(createname=apply_name)
     return render(request, 'huiyiyuding/core/mycreate.html', locals())
+
+
+#自动执行任务
+scheduler = BackgroundScheduler()
+
+def autodelemeeting():
+    import datetime
+    now = datetime.datetime.now()
+    meetings.objects.filter(endtime__lt=now).update(starttime=None, endtime=None, createname=None)
+    return HttpResponse("会议室已结束")
+
+scheduler.add_job(autodelemeeting, 'interval', minutes=1)
+
+scheduler.start()
